@@ -25,6 +25,9 @@
 		F507145528C8194F0066F3CE /* InputNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F507145428C8194F0066F3CE /* InputNameView.swift */; };
 		F5086CEA28C8DE7800210619 /* DisplayGenderForMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5086CE928C8DE7800210619 /* DisplayGenderForMeView.swift */; };
 		F535A05E28CA3D3E004469C0 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F535A05D28CA3D3E004469C0 /* AddImageView.swift */; };
+		F5477B8328CE291C00AB4461 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F5477B8228CE291C00AB4461 /* Lottie */; };
+		F5477B8528CE2D1F00AB4461 /* AnimationLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */; };
+		F5477B8728CE2FB800AB4461 /* fire.json in Resources */ = {isa = PBXBuildFile; fileRef = F5477B8628CE2FB800AB4461 /* fire.json */; };
 		F5680C1128C8E6AE00C6877E /* InputSchoolName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5680C1028C8E6AE00C6877E /* InputSchoolName.swift */; };
 		F56ACE4128C890AF00B3AAE7 /* InputBirthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4028C890AF00B3AAE7 /* InputBirthDay.swift */; };
 		F56ACE4328C8A27100B3AAE7 /* ChooseGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4228C8A27100B3AAE7 /* ChooseGenderView.swift */; };
@@ -75,6 +78,8 @@
 		F507145428C8194F0066F3CE /* InputNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNameView.swift; sourceTree = "<group>"; };
 		F5086CE928C8DE7800210619 /* DisplayGenderForMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayGenderForMeView.swift; sourceTree = "<group>"; };
 		F535A05D28CA3D3E004469C0 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
+		F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationLoadingView.swift; sourceTree = "<group>"; };
+		F5477B8628CE2FB800AB4461 /* fire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fire.json; sourceTree = "<group>"; };
 		F5680C1028C8E6AE00C6877E /* InputSchoolName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSchoolName.swift; sourceTree = "<group>"; };
 		F56ACE4028C890AF00B3AAE7 /* InputBirthDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBirthDay.swift; sourceTree = "<group>"; };
 		F56ACE4228C8A27100B3AAE7 /* ChooseGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGenderView.swift; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5477B8328CE291C00AB4461 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,8 +197,10 @@
 		F5031D0C28C60EC50031179A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F5477B8828CE34B100AB4461 /* AnimationJSONFile */,
 				F5031D0D28C60EE20031179A /* Modifiers.swift */,
 				F5C0A97128C7055C00FF4999 /* CustomTextField.swift */,
+				F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +228,14 @@
 				F5031D1528C620D40031179A /* SwiftExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F5477B8828CE34B100AB4461 /* AnimationJSONFile */ = {
+			isa = PBXGroup;
+			children = (
+				F5477B8628CE2FB800AB4461 /* fire.json */,
+			);
+			path = AnimationJSONFile;
 			sourceTree = "<group>";
 		};
 		F56ECDAF28CD9C3300795FD3 /* ChatViewGroup */ = {
@@ -313,6 +329,9 @@
 			dependencies = (
 			);
 			name = "Tinder-FE";
+			packageProductDependencies = (
+				F5477B8228CE291C00AB4461 /* Lottie */,
+			);
 			productName = "Tinder-FE";
 			productReference = F5031CEE28C60CBE0031179A /* Tinder-FE.app */;
 			productType = "com.apple.product-type.application";
@@ -341,6 +360,9 @@
 				Base,
 			);
 			mainGroup = F5031CE528C60CBE0031179A;
+			packageReferences = (
+				F5477B8128CE291C00AB4461 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = F5031CEF28C60CBE0031179A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,6 +380,7 @@
 				F5C0A97828C7271C00FF4999 /* CodeNumber.json in Resources */,
 				F5031CF928C60CC00031179A /* Preview Assets.xcassets in Resources */,
 				F5031CF628C60CC00031179A /* Assets.xcassets in Resources */,
+				F5477B8728CE2FB800AB4461 /* fire.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +417,7 @@
 				F5A81FF728CCDDF300E5A1C9 /* ResourcesProfileView.swift in Sources */,
 				F5A81FFF28CCFB7600E5A1C9 /* ToolChild.swift in Sources */,
 				F5031D0328C60D850031179A /* LoadingView.swift in Sources */,
+				F5477B8528CE2D1F00AB4461 /* AnimationLoadingView.swift in Sources */,
 				F5680C1128C8E6AE00C6877E /* InputSchoolName.swift in Sources */,
 				F507145128C771630066F3CE /* PhoneNumberCodeInfo.swift in Sources */,
 				F5A81FF128CCD8A300E5A1C9 /* SaveAccountCenterView.swift in Sources */,
@@ -538,13 +562,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Tinder-FE/Preview Content\"";
 				DEVELOPMENT_TEAM = Q22N32SHV8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tinder-FE/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -567,13 +592,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Tinder-FE/Preview Content\"";
 				DEVELOPMENT_TEAM = Q22N32SHV8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tinder-FE/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -611,6 +637,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5477B8128CE291C00AB4461 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F5477B8228CE291C00AB4461 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5477B8128CE291C00AB4461 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F5031CE628C60CBE0031179A /* Project object */;
 }

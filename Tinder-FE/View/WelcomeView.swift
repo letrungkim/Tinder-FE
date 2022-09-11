@@ -31,8 +31,8 @@ struct WelcomeView: View {
                         .padding(.bottom, 20)
                     
                     //MARK: - BUTTON TẠO TÀI KHOẢN
-                    Button {
-                        
+                    NavigationLink {
+                        InputPhoneNumbers()
                     } label: {
                         Text("TẠO TÀI KHOẢN")
                             .frame(maxWidth: .infinity, minHeight: 55)

@@ -28,7 +28,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100)
-                        .padding(.top, 25)
+                        .padding(.top, 22)
                         .zIndex(1.0)
                     Spacer().frame(height: 20)
                     Image("vodka")

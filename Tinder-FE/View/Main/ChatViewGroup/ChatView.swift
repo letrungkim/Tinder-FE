@@ -25,7 +25,7 @@ struct ChatView: View {
                         .scaledToFit()
                         .frame(width: 100)
                         .offset(x: 25)
-                        .padding(.top, 19)
+                        .padding(.top, 18)
                     Spacer()
                     Button {
                         self.showingSaveProfileView = true
@@ -35,7 +35,7 @@ struct ChatView: View {
                             .foregroundColor(.gray)
                             .scaledToFit()
                             .frame(width: 30)
-                            .padding(.top, 19)
+                            .padding(.top, 15)
                             .padding(.trailing, 20)
                     }
                 }

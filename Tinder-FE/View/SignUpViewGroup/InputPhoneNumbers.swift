@@ -12,15 +12,14 @@ struct InputPhoneNumbers: View {
     enum FocusField: Hashable {
         case field
     }
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
     @State private var showingListPhoneCodeONtation: Bool = false
     
     var body: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
+        NavigationView {
             VStack {
                 Spacer().frame(height: 80)
                 //MARK: - TITLE
@@ -65,9 +64,9 @@ struct InputPhoneNumbers: View {
                     .padding(.horizontal, 10)
                 Spacer()
                 //MARK: - BUTTON SUBMIT
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: {
+                    InputPhoneVerifyCode()
+                }, label: {
                     if signUpVMGroup.number.isEmpty {
                         Text("TIẾP TỤC")
                             .modifier(ButtonNextDisable())
@@ -75,8 +74,7 @@ struct InputPhoneNumbers: View {
                         Text("TIẾP TỤC")
                             .modifier(ButtonNextEnable())
                     }
-                    
-                }
+                })
                 .disabled(disableButton)
                 .padding(.horizontal, 30)
                 .onReceive(signUpVMGroup.$number, perform: { _ in
@@ -87,9 +85,11 @@ struct InputPhoneNumbers: View {
                     }
                 })
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
             .overlay(
                 Button(action: {
-                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()
@@ -99,10 +99,12 @@ struct InputPhoneNumbers: View {
                 alignment: .topLeading
             )
             .padding(20)
+            .sheet(isPresented: $showingListPhoneCodeONtation) {
+                ListOfNumberCodeArea()
+            }
         }
-        .sheet(isPresented: $showingListPhoneCodeONtation) {
-            ListOfNumberCodeArea()
-        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

@@ -13,7 +13,7 @@ struct InputPhoneVerifyCode: View {
     enum FocusField: Hashable {
         case field
     }
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
@@ -88,9 +88,11 @@ struct InputPhoneVerifyCode: View {
                     }
                 })
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
             .overlay(
                 Button(action: {
-                    
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()
