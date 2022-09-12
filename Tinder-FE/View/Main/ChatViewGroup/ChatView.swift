@@ -68,6 +68,21 @@ struct ChatView: View {
                 }
                 Spacer().frame(height: 50)
                 HStack {
+                    Text("Trợ lý")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("lightRed"))
+                        .padding()
+                    Spacer()
+                }
+                .offset(y: 15)
+                NavigationLink {
+                    ChatBotViewScreen(imgName: "tinderBot", name: "Phù thuỷ tình iu", online: "true")
+                } label: {
+                    ChatViewRow(imgName: "tinderBot", name: "Phù thuỷ tình iu", lastMessage: "Tui là phù thuỷ tình yêu đây", online: "true")
+                }
+
+                Spacer()
+                HStack {
                     Text("Tin nhắn")
                         .fontWeight(.bold)
                         .foregroundColor(Color("lightRed"))
@@ -84,7 +99,6 @@ struct ChatView: View {
 
                     }
                 }
-                Spacer()
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
