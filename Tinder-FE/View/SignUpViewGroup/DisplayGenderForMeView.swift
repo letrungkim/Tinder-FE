@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct DisplayGenderForMeView: View {
     @State private var isChooseMale: Bool = false
     @State private var isChooseFeMale: Bool = true
     @State private var isChooseEveryOne: Bool = false
+    @State private var goToNextView: Bool = false
+    @State private var goBack: Bool = false
     var body: some View {
         ZStack {
+            PopView(isActive: $goBack, label: {Text("")})
+            PushView(destination: InputSchoolName(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 90)
                 HStack {
@@ -135,7 +140,7 @@ struct DisplayGenderForMeView: View {
                 Spacer()
                 //MARK: - BUTTON TIẾP TỤC
                 Button {
-                    
+                    self.goToNextView = true
                 } label: {
                     Text("TIẾP TỤC")
                         .frame(maxWidth: .infinity, minHeight: 55)
@@ -150,7 +155,7 @@ struct DisplayGenderForMeView: View {
             }
             .overlay(
                 Button(action: {
-                    
+                    self.goBack = true
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct InputNameView: View {
     
@@ -14,13 +15,16 @@ struct InputNameView: View {
     }
     
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
+    @State private var goToNextView: Bool = false
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
     @State private var showAlert = false
+    @State private var closeView: Bool = false
     
     var body: some View {
         ZStack {
             showAlert ? Color.gray.ignoresSafeArea() : Color.white.ignoresSafeArea()
+            PushView(destination: InputBirthDay(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 80)
                 HStack {
@@ -49,7 +53,7 @@ struct InputNameView: View {
                 Spacer()
                 //MARK: - BUTTON SUBMIT
                 Button {
-                    
+                    self.goToNextView = true
                 } label: {
                     if signUpVMGroup.name.isEmpty {
                         Text("TIẾP TỤC")
@@ -71,22 +75,24 @@ struct InputNameView: View {
                 })
             }
             .overlay(
-                Button(action: {
+                Button {
+                    self.closeView.toggle()
                     showAlert.toggle()
-                }) {
-                  Image("closeButton")
-                        .resizable()
-                        .scaledToFit()
+                } label: {
+                    Image("closeButton")
+                          .resizable()
+                          .scaledToFit()
                 }
-                .modifier(AddImageButtonModifier()),
-                alignment: .topLeading
+                    .disabled(closeView)
+                    .modifier(AddImageButtonModifier()),
+                    alignment: .topLeading
             )
             .padding(20)
             .opacity(showAlert ? 0.3 : 1)
             
             
             if showAlert {
-                CustomAlertView(showAlert: $showAlert)
+                CustomAlertView(showAlert: $showAlert, disableXButton: $closeView)
             }
         }
     }
@@ -94,6 +100,7 @@ struct InputNameView: View {
 
 struct CustomAlertView: View {
     @Binding var showAlert: Bool
+    @Binding var disableXButton: Bool
     var body: some View {
         
         ZStack {
@@ -113,6 +120,7 @@ struct CustomAlertView: View {
                     .frame(height: 2)
                 HStack {
                     Button {
+                        disableXButton.toggle()
                         showAlert.toggle()
                     } label: {
                         HStack {

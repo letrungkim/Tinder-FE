@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct InputSchoolName: View {
     enum FocusField: Hashable {
@@ -14,8 +15,12 @@ struct InputSchoolName: View {
     
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
     @FocusState private var focusedField: FocusField?
+    @State private var goToNextView: Bool = false
+    @State private var goBack: Bool = false
     var body: some View {
         ZStack {
+            PopView(isActive: $goBack, label: {Text("")})
+            PushView(destination: MyFavouriteView(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 80)
                 HStack {
@@ -45,7 +50,11 @@ struct InputSchoolName: View {
                 Spacer()
                 //MARK: - BUTTON SUBMIT
                 Button {
-                    
+                    if !signUpVMGroup.schoolName.isEmpty {
+                        self.goToNextView = true
+                    } else {
+                        self.goToNextView = true
+                    }
                 } label: {
                     if signUpVMGroup.schoolName.isEmpty {
                         HStack {
@@ -72,7 +81,7 @@ struct InputSchoolName: View {
             }
             .overlay(
                 Button(action: {
-                    
+                    self.goBack = true
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()

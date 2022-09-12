@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import NavigationStack
 
 struct InputBirthDay: View {
     
@@ -15,12 +16,16 @@ struct InputBirthDay: View {
     }
     
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
+    @State private var goToNextView: Bool = false
+    @State private var goBack: Bool = false
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
     let textLimit = 8
     
     var body: some View {
         ZStack {
+            PopView(isActive: $goBack, label: {Text("")})
+            PushView(destination: ChooseGenderView(), isActive: $goToNextView, label: {Text("")})
             TextField("", text: $signUpVMGroup.birthDay)
                 .focused($focusedField, equals: .field)
                 .onAppear {
@@ -57,7 +62,7 @@ struct InputBirthDay: View {
                     .foregroundColor(Color("darkGrey"))
                 Spacer()
                 Button {
-                    
+                    self.goToNextView = true
                 } label: {
                     if signUpVMGroup.birthDay.isEmpty || signUpVMGroup.birthDay.count != 8 {
                         Text("TIẾP TỤC")
@@ -80,7 +85,7 @@ struct InputBirthDay: View {
             }
             .overlay(
                 Button(action: {
-                    
+                    self.goBack = true
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()

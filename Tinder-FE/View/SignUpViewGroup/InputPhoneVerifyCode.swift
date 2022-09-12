@@ -15,6 +15,7 @@ struct InputPhoneVerifyCode: View {
     }
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
+    @State private var showingWelcomeView = false
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
     let textLimit = 6
@@ -67,7 +68,7 @@ struct InputPhoneVerifyCode: View {
                 Spacer()
                 //MARK: - BUTTON SUBMIT
                 Button {
-                    
+                    self.showingWelcomeView = true
                 } label: {
                     if signUpVMGroup.code.isEmpty || signUpVMGroup.code.count != 6 {
                         Text("TIẾP TỤC")
@@ -102,6 +103,9 @@ struct InputPhoneVerifyCode: View {
                 alignment: .topLeading
             )
             .padding(20)
+            .sheet(isPresented: $showingWelcomeView) {
+                WelcomeToTinderView()
+            }
         }
     }
     

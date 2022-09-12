@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct MyFavouriteView: View {
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
+    @State private var goToNextView: Bool = false
+    @State private var goBack: Bool = false
     @State private var disableButton: Bool = true
     var body: some View {
         ZStack {
+            PopView(isActive: $goBack, label: {Text("")})
+            PushView(destination: AddImageView(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 50)
                 HStack {
@@ -359,7 +364,7 @@ struct MyFavouriteView: View {
                 .padding(.leading, 10)
                 Spacer()
                 Button {
-                    
+                    self.goToNextView = true
                 } label: {
                     if signUpVMGroup.favouriteArray.count < 5 {
                         Text("TIẾP TỤC  \(signUpVMGroup.favouriteArray.count)/5")
@@ -381,7 +386,7 @@ struct MyFavouriteView: View {
             }
             .overlay(
                 Button(action: {
-                    
+                    self.goBack = true
                 }) {
                   Image("darkGrayBackButton")
                         .resizable()
@@ -392,7 +397,7 @@ struct MyFavouriteView: View {
             )
             .overlay(
                 Button(action: {
-                    
+                    self.goToNextView = true
                 }) {
                   Text("BỎ QUA")
                 }

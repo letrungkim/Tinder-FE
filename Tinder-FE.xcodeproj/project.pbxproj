@@ -28,6 +28,7 @@
 		F5477B8328CE291C00AB4461 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F5477B8228CE291C00AB4461 /* Lottie */; };
 		F5477B8528CE2D1F00AB4461 /* AnimationLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */; };
 		F5477B8728CE2FB800AB4461 /* fire.json in Resources */ = {isa = PBXBuildFile; fileRef = F5477B8628CE2FB800AB4461 /* fire.json */; };
+		F5477B8B28CF116100AB4461 /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = F5477B8A28CF116100AB4461 /* NavigationStack */; };
 		F5680C1128C8E6AE00C6877E /* InputSchoolName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5680C1028C8E6AE00C6877E /* InputSchoolName.swift */; };
 		F56ACE4128C890AF00B3AAE7 /* InputBirthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4028C890AF00B3AAE7 /* InputBirthDay.swift */; };
 		F56ACE4328C8A27100B3AAE7 /* ChooseGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4228C8A27100B3AAE7 /* ChooseGenderView.swift */; };
@@ -116,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5477B8328CE291C00AB4461 /* Lottie in Frameworks */,
+				F5477B8B28CF116100AB4461 /* NavigationStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +333,7 @@
 			name = "Tinder-FE";
 			packageProductDependencies = (
 				F5477B8228CE291C00AB4461 /* Lottie */,
+				F5477B8A28CF116100AB4461 /* NavigationStack */,
 			);
 			productName = "Tinder-FE";
 			productReference = F5031CEE28C60CBE0031179A /* Tinder-FE.app */;
@@ -362,6 +365,7 @@
 			mainGroup = F5031CE528C60CBE0031179A;
 			packageReferences = (
 				F5477B8128CE291C00AB4461 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F5477B8928CF116100AB4461 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
 			);
 			productRefGroup = F5031CEF28C60CBE0031179A /* Products */;
 			projectDirPath = "";
@@ -647,6 +651,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		F5477B8928CF116100AB4461 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matteopuc/swiftui-navigation-stack.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -654,6 +666,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5477B8128CE291C00AB4461 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		F5477B8A28CF116100AB4461 /* NavigationStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5477B8928CF116100AB4461 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */;
+			productName = NavigationStack;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
