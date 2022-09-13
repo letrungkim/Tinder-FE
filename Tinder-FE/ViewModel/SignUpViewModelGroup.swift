@@ -12,7 +12,7 @@ class SignUpViewModelGroup: ObservableObject {
     @Published var Searchtext: String = ""
     @Published var code = ""
     @Published var name = ""
-    @Published var birthDay = ""
+    @Published var birthDay: Date = Date()
     @Published var gender = ""
     @Published var schoolName = ""
     @Published var favouriteArray: [String] = []

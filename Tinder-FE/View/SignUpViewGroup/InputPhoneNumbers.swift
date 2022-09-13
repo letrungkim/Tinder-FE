@@ -65,7 +65,7 @@ struct InputPhoneNumbers: View {
                 Spacer()
                 //MARK: - BUTTON SUBMIT
                 NavigationLink(destination: {
-                    InputPhoneVerifyCode()
+                    mdViewBetweenIpPhoneCodeAndWelcometoTinder()
                 }, label: {
                     if signUpVMGroup.number.isEmpty {
                         Text("TIẾP TỤC")

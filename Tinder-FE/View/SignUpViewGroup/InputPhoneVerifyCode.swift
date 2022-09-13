@@ -15,7 +15,7 @@ struct InputPhoneVerifyCode: View {
     }
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
-    @State private var showingWelcomeView = false
+    @Binding var isActive: Bool
     @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
     let textLimit = 6
@@ -68,7 +68,7 @@ struct InputPhoneVerifyCode: View {
                 Spacer()
                 //MARK: - BUTTON SUBMIT
                 Button {
-                    self.showingWelcomeView = true
+                    self.isActive = false
                 } label: {
                     if signUpVMGroup.code.isEmpty || signUpVMGroup.code.count != 6 {
                         Text("TIẾP TỤC")
@@ -103,9 +103,6 @@ struct InputPhoneVerifyCode: View {
                 alignment: .topLeading
             )
             .padding(20)
-            .sheet(isPresented: $showingWelcomeView) {
-                WelcomeToTinderView()
-            }
         }
     }
     
@@ -147,8 +144,29 @@ struct VerifyCodeView: View {
     }
 }
 
+struct mdViewBetweenIpPhoneCodeAndWelcometoTinder: View {
+    @State var isActive: Bool = true
+    @State private var animatingView = false
+    var body: some View {
+        ZStack {
+            if isActive {
+                InputPhoneVerifyCode(isActive: $isActive)
+            } else {
+                WelcomeToTinderView()
+                    .opacity(animatingView ? 1 : 0)
+                    .animation(Animation.easeInOut(duration: 1).repeatCount(1), value: animatingView)
+                    .onAppear(perform: {
+                        self.animatingView.toggle()
+                    })
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+    }
+}
+
 struct InputPhoneVerifyCode_Previews: PreviewProvider {
     static var previews: some View {
-        InputPhoneVerifyCode()
+        InputPhoneVerifyCode(isActive: .constant(true))
     }
 }

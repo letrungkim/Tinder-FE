@@ -19,6 +19,8 @@ struct RootView: View {
                 WelcomeView()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

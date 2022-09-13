@@ -10,31 +10,19 @@ import Combine
 import NavigationStack
 
 struct InputBirthDay: View {
-    
-    enum FocusField: Hashable {
-        case field
-    }
-    
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
     @State private var goToNextView: Bool = false
     @State private var goBack: Bool = false
-    @FocusState private var focusedField: FocusField?
     @State private var disableButton: Bool = true
-    let textLimit = 8
+    
+    
+    let startingDate: Date = Calendar.current.date(from: DateComponents(year: 1970)) ?? Date()
+    let endingDate: Date = Date()
     
     var body: some View {
         ZStack {
             PopView(isActive: $goBack, label: {Text("")})
             PushView(destination: ChooseGenderView(), isActive: $goToNextView, label: {Text("")})
-            TextField("", text: $signUpVMGroup.birthDay)
-                .focused($focusedField, equals: .field)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.focusedField = .field
-                    }
-                }
-                .onReceive(Just(signUpVMGroup.birthDay)) {_ in limitText(textLimit) }
-                .keyboardType(.numberPad)
             Color.white.ignoresSafeArea()
             VStack {
                 Spacer().frame(height: 80)
@@ -45,17 +33,17 @@ struct InputBirthDay: View {
                     Spacer()
                 }
                 Spacer().frame(height: 40)
-                HStack(spacing: 10) {
-                    ForEach(0..<8,id: \.self) { index in
-                        FormatDateTextFieldView(birthday: getElementAtIndex(index: index))
-                        if index == 1 || index == 3 {
-                            Text("/")
-                                .font(.title)
-                                .foregroundColor(Color.gray.opacity(0.5))
-                        }
-                    }
+                HStack {
+                    Spacer()
+                    DatePicker("Choose Your BirthDate", selection: $signUpVMGroup.birthDay, in: startingDate...endingDate, displayedComponents: [.date])
+                        .accentColor(Color("lightRed"))
+                        .datePickerStyle(
+                            GraphicalDatePickerStyle()
+                        )
+                    Spacer()
                 }
-                .padding(.horizontal, 30)
+                .labelsHidden()
+                
                 Text("Tuổi của bạn sẽ được hiển thị công khai")
                     .frame(width: 320)
                     .font(.system(size: 17, weight: .bold, design: .default))
@@ -64,24 +52,10 @@ struct InputBirthDay: View {
                 Button {
                     self.goToNextView = true
                 } label: {
-                    if signUpVMGroup.birthDay.isEmpty || signUpVMGroup.birthDay.count != 8 {
-                        Text("TIẾP TỤC")
-                            .modifier(ButtonNextDisable())
-                    } else {
-                        Text("TIẾP TỤC")
-                            .modifier(ButtonNextEnable())
-                    }
-                    
+                    Text("TIẾP TỤC")
+                        .modifier(ButtonNextEnable())
                 }
-                .disabled(disableButton)
                 .padding(.horizontal, 30)
-                .onReceive(signUpVMGroup.$birthDay, perform: { _ in
-                    if !signUpVMGroup.birthDay.isEmpty && signUpVMGroup.birthDay.count == 8 {
-                        self.disableButton = false
-                    } else {
-                        self.disableButton = true
-                    }
-                })
             }
             .overlay(
                 Button(action: {
@@ -97,43 +71,7 @@ struct InputBirthDay: View {
             .padding(20)
         }
     }
-    func getElementAtIndex(index: Int) -> String {
-        if signUpVMGroup.birthDay.count > index {
-            let start = signUpVMGroup.birthDay.startIndex
-            let current = signUpVMGroup.birthDay.index(start, offsetBy: index)
-            
-            return String(signUpVMGroup.birthDay[current])
-        }
-        return ""
-    }
-    //Function to keep text length in limits
-    func limitText(_ limit: Int) {
-        if signUpVMGroup.birthDay.count > limit {
-            signUpVMGroup.birthDay = String(signUpVMGroup.birthDay.prefix(limit))
-        }
-    }
 }
-
-struct FormatDateTextFieldView: View {
-    var birthday: String
-    
-    var body: some View {
-        VStack {
-            Text(birthday)
-                .foregroundColor(.black)
-                .fontWeight(.light)
-                .font(.title)
-                .frame(height: 45)
-            
-            Capsule()
-                .fill(Color.gray.opacity(0.5))
-                .frame(height: 4)
-            
-            
-        }
-    }
-}
-
 
 struct InputBirthDay_Previews: PreviewProvider {
     static var previews: some View {

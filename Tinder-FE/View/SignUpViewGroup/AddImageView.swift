@@ -202,7 +202,7 @@ struct AddImageView: View {
                 }
                 Spacer()
                 Button {
-                    
+                    self.goToNextView = true
                 } label: {
                     if signUpVMGroup.countAddedImage >= 2 {
                         Text("TIẾP TỤC")

@@ -136,8 +136,8 @@ struct CustomAlertView: View {
                     Spacer()
                     Divider()
                         .frame(width: 2)
-                    Button {
-                        
+                    NavigationLink {
+                        RootView()
                     } label: {
                         HStack {
                             Spacer()
@@ -147,8 +147,8 @@ struct CustomAlertView: View {
                                 
                             Spacer()
                         }
-                        
                     }
+
                 }
                 Spacer()
             }

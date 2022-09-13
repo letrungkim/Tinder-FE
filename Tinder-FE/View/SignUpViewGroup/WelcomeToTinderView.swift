@@ -17,11 +17,11 @@ struct WelcomeToTinderView: View {
                 VStack {
                     Spacer().frame(height: 70)
                     Group {
-                        Image("tinderLogo")
+                        Image("TinderLabelColorful")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 40, height: 40)
-                        Text("Chào mừng bạn đế với Tinder.")
+                            .frame(width: 120, height: 40)
+                        Text("Chào mừng bạn đến với Match.")
                             .font(.system(size: 25, weight: .bold, design: .default))
                             .padding(.bottom, 5)
                         Text("Vui lòng tuân thủ các Quy Tắc Chung này.")
