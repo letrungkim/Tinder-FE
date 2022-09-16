@@ -16,4 +16,8 @@ extension View {
             .foregroundColor(.gray)
             .padding(10)
     }
+    
+    func getRect() -> CGRect {
+        return UIScreen.main.bounds
+    }
 }

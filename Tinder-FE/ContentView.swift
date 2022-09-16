@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        RootView()
+        ZStack {
+            RootView()
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

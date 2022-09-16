@@ -92,6 +92,8 @@ struct InputSchoolName: View {
             )
             .padding(.top, 20)
             .padding(.horizontal, 20)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

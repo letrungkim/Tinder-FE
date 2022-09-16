@@ -165,6 +165,8 @@ struct DisplayGenderForMeView: View {
                 alignment: .topLeading
             )
             .padding(20)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

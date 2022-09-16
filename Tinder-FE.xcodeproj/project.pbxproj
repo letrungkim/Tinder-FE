@@ -31,15 +31,14 @@
 		F5477B8528CE2D1F00AB4461 /* AnimationLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */; };
 		F5477B8728CE2FB800AB4461 /* fire.json in Resources */ = {isa = PBXBuildFile; fileRef = F5477B8628CE2FB800AB4461 /* fire.json */; };
 		F5477B8B28CF116100AB4461 /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = F5477B8A28CF116100AB4461 /* NavigationStack */; };
+		F55DDE1328D4B33200AA267E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55DDE1228D4B33200AA267E /* HomeViewModel.swift */; };
 		F5680C1128C8E6AE00C6877E /* InputSchoolName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5680C1028C8E6AE00C6877E /* InputSchoolName.swift */; };
 		F56ACE4128C890AF00B3AAE7 /* InputBirthDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4028C890AF00B3AAE7 /* InputBirthDay.swift */; };
 		F56ACE4328C8A27100B3AAE7 /* ChooseGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ACE4228C8A27100B3AAE7 /* ChooseGenderView.swift */; };
 		F56ECDAE28CD933100795FD3 /* ChatViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ECDAD28CD933100795FD3 /* ChatViewRow.swift */; };
 		F56ECDB128CD9DC000795FD3 /* ChatViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56ECDB028CD9DC000795FD3 /* ChatViewScreen.swift */; };
 		F5A81FE328CB400200E5A1C9 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FE228CB400200E5A1C9 /* CardModel.swift */; };
-		F5A81FE628CB553D00E5A1C9 /* CardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FE528CB553D00E5A1C9 /* CardsSection.swift */; };
 		F5A81FE828CB556600E5A1C9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FE728CB556600E5A1C9 /* CardView.swift */; };
-		F5A81FEA28CB6BEF00E5A1C9 /* ButtonSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FE928CB6BEF00E5A1C9 /* ButtonSection.swift */; };
 		F5A81FEC28CC5E0600E5A1C9 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FEB28CC5E0600E5A1C9 /* EditProfileView.swift */; };
 		F5A81FEE28CC5E4300E5A1C9 /* ProfilePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FED28CC5E4300E5A1C9 /* ProfilePreviewView.swift */; };
 		F5A81FF128CCD8A300E5A1C9 /* SaveAccountCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A81FF028CCD8A300E5A1C9 /* SaveAccountCenterView.swift */; };
@@ -85,15 +84,14 @@
 		F535A05D28CA3D3E004469C0 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		F5477B8428CE2D1F00AB4461 /* AnimationLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationLoadingView.swift; sourceTree = "<group>"; };
 		F5477B8628CE2FB800AB4461 /* fire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fire.json; sourceTree = "<group>"; };
+		F55DDE1228D4B33200AA267E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F5680C1028C8E6AE00C6877E /* InputSchoolName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSchoolName.swift; sourceTree = "<group>"; };
 		F56ACE4028C890AF00B3AAE7 /* InputBirthDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBirthDay.swift; sourceTree = "<group>"; };
 		F56ACE4228C8A27100B3AAE7 /* ChooseGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGenderView.swift; sourceTree = "<group>"; };
 		F56ECDAD28CD933100795FD3 /* ChatViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewRow.swift; sourceTree = "<group>"; };
 		F56ECDB028CD9DC000795FD3 /* ChatViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewScreen.swift; sourceTree = "<group>"; };
 		F5A81FE228CB400200E5A1C9 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		F5A81FE528CB553D00E5A1C9 /* CardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSection.swift; sourceTree = "<group>"; };
 		F5A81FE728CB556600E5A1C9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		F5A81FE928CB6BEF00E5A1C9 /* ButtonSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSection.swift; sourceTree = "<group>"; };
 		F5A81FEB28CC5E0600E5A1C9 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		F5A81FED28CC5E4300E5A1C9 /* ProfilePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreviewView.swift; sourceTree = "<group>"; };
 		F5A81FF028CCD8A300E5A1C9 /* SaveAccountCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAccountCenterView.swift; sourceTree = "<group>"; };
@@ -259,10 +257,9 @@
 		F5A81FE428CB551200E5A1C9 /* HomeViewGroup */ = {
 			isa = PBXGroup;
 			children = (
+				F55DDE1228D4B33200AA267E /* HomeViewModel.swift */,
 				F5A9E5D528CB1B2A002FB4D4 /* HomeView.swift */,
-				F5A81FE528CB553D00E5A1C9 /* CardsSection.swift */,
 				F5A81FE728CB556600E5A1C9 /* CardView.swift */,
-				F5A81FE928CB6BEF00E5A1C9 /* ButtonSection.swift */,
 			);
 			path = HomeViewGroup;
 			sourceTree = "<group>";
@@ -420,8 +417,8 @@
 				F5B1050428CA1A7900C6AD6C /* WelcomeToTinderView.swift in Sources */,
 				F535A05E28CA3D3E004469C0 /* AddImageView.swift in Sources */,
 				F51A9B3928CF2F9000998C9C /* BotResponse.swift in Sources */,
+				F55DDE1328D4B33200AA267E /* HomeViewModel.swift in Sources */,
 				F5031CF228C60CBE0031179A /* Tinder_FEApp.swift in Sources */,
-				F5A81FE628CB553D00E5A1C9 /* CardsSection.swift in Sources */,
 				F5A81FF528CCDD2600E5A1C9 /* ToolProfileView.swift in Sources */,
 				F5031D1128C61D6A0031179A /* InputPhoneNumbers.swift in Sources */,
 				F5A81FFA28CCEF6C00E5A1C9 /* GuideChild1.swift in Sources */,
@@ -446,7 +443,6 @@
 				F5A9E5D628CB1B2A002FB4D4 /* HomeView.swift in Sources */,
 				F5C0A97228C7055C00FF4999 /* CustomTextField.swift in Sources */,
 				F507145328C77E3C0066F3CE /* InputPhoneVerifyCode.swift in Sources */,
-				F5A81FEA28CB6BEF00E5A1C9 /* ButtonSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,7 @@ struct MyFavouriteView: View {
     var body: some View {
         ZStack {
             PopView(isActive: $goBack, label: {Text("")})
-            PushView(destination: AddImageView(), isActive: $goToNextView, label: {Text("")})
+            PushView(destination: teleToLoadingView(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 50)
                 HStack {
@@ -406,6 +406,8 @@ struct MyFavouriteView: View {
             )
             .padding(.top, 20)
             .padding(.horizontal, 20)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
     

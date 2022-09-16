@@ -8,89 +8,169 @@
 import SwiftUI
 
 struct CardView: View {
+    @EnvironmentObject var cardData: HomeViewModel
     @State var card: Card
-    // MARK: - Drawing Constant
     let cardGradient = Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.5)])
     
+    //MARK: GESTURE PROPERTIES
+    @State var offsetX: CGFloat = 0
+    @State var offsetY: CGFloat = 0
+    @GestureState var isDragging: Bool = false
+    
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Image(card.imageName)
-                .resizable()
-                .clipped()
-                
+        
+        GeometryReader { proxy in
+            let size = proxy.size
             
-            // Linear Gradient
-            LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
-            VStack {
-                Spacer()
-                VStack(alignment: .leading){
-                    HStack {
-                        Text(card.name).font(.largeTitle).fontWeight(.bold)
-                        Text(String(card.age)).font(.title)
-                    }
-                    HStack {
-                        Image(systemName: "circle.fill")
-                            .foregroundColor(.green)
-                        Text(card.activeStatus[0]).font(.body)
-                    }
-                    HStack {
-                        Image(systemName: "house")
-                            .tint(.white)
-                        Text(card.state).font(.body)
-                    }
+            ZStack {
+                Image(card.imageName)
+                    .resizable()
+                    .clipped()
+                    .frame(width: size.width, height: size.height)
                     
+                LinearGradient(gradient: cardGradient, startPoint: .top, endPoint: .bottom)
+                
+                VStack {
+                    Spacer()
+                    VStack(alignment: .leading){
+                        HStack {
+                            Text(card.name).font(.largeTitle).fontWeight(.bold)
+                            Text(String(card.age)).font(.title)
+                        }
+                        HStack {
+                            Image(systemName: "circle.fill")
+                                .foregroundColor(.green)
+                            Text(card.activeStatus[0]).font(.body)
+                        }
+                        HStack {
+                            Image(systemName: "house")
+                                .tint(.white)
+                            Text(card.state).font(.body)
+                        }
+                        
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, 100)
+                    .padding(.trailing, 150)
                 }
-                .padding(.bottom, 100)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundColor(.white)
+                
+                HStack {
+                    Image("likeLabel")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:150)
+                        .opacity(Double(offsetX/10 - 1))
+                    Spacer()
+                    Image("nopeLabel")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:150)
+                        .opacity(Double(offsetX/10 * -1 - 1))
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                
+                
             }
-            .padding()
-            .foregroundColor(.white)
+            .cornerRadius(15)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+        .offset(x: offsetX, y: offsetY)
+        .rotationEffect(.init(degrees: getRotation(degree: 8)))
+        .contentShape(Rectangle())
+        .gesture(
+            DragGesture()
+                .updating($isDragging, body: { value, out, _ in
+                    out = true
+                })
+                .onChanged({ value in
+                    withAnimation(.default) {
+                        let translationX = value.translation.width
+                        let translationY = value.translation.height
+                        offsetX = (isDragging ? translationX : .zero)
+                        offsetY = (isDragging ? translationY : .zero)
+                    }
+                })
+                .onEnded({ value in
+                    
+                    let width = getRect().width - 50
+                    let translationX = value.translation.width
+                    
+                    let checkingStatus = (translationX > 0 ? translationX : -translationX)
+                    
+                    //MARK: KHI KÉO HẾT HƠN 1 NỬA ĐỘ RỘNG MÀN HÌNH -> THÌ CARD SẼ ĐC REMOVE QUA TRÁI OR PHẢI
+                    withAnimation(.default.speed(0.5)) {
+                        if checkingStatus > (width / 2) {
+                            
+                            offsetX = (translationX > 0 ? width : -width) * 2
+                            endSwipAction()
+                            
+                            //MARK: XỬ LÝ SỰ KIỆN KHI QUẸT TRÁI QUẸT PHẢI
+                            if translationX > 0 {
+                                rightSwipe()
+                            } else {leftSwipe()}
+                            
+                        } else {
+                            offsetX = .zero
+                            offsetY = .zero
+                        }
+                    }
+                })
+        )
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ACTION"), object: nil)) { data in
             
-            HStack {
-                Image("likeLabel")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:150)
-                    .opacity(Double(card.x/10 - 1))
-                Spacer()
-                Image("nopeLabel")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:150)
-                    .opacity(Double(card.x/10 * -1 - 1))
+            guard let info = data.userInfo else {
+                return
+            }
+            
+            let id = info["id"] as? String ?? ""
+            let rightSwipe = info["rightSwipe"] as? Bool ?? false
+            let width = getRect().width - 50
+            
+            if card.id == id {
+                withAnimation(.default.speed(0.5)) {
+                    offsetX = (rightSwipe ? width : -width) * 2
+                    endSwipAction()
+                    
+                    //MARK: XỬ LÝ SỰ KIỆN KHI QUẸT TRÁI QUẸT PHẢI
+                    if rightSwipe {
+                        self.rightSwipe()
+                    } else {leftSwipe()}
+                }
             }
             
         }
         
-        .cornerRadius(10)
-        .offset(x: card.x, y: card.y)
-        .rotationEffect(.init(degrees: card.degree))
-        .gesture (
-            DragGesture()
-                .onChanged { value in
-                    withAnimation(.default) {
-                        card.x = value.translation.width
-                        // MARK: - BUG 5
-                        card.y = value.translation.height
-                        card.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                    }
+    }
+    
+    
+    func endSwipAction() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if let _ = cardData.displayData?.first {
+                let _ = withAnimation(.default.speed(0.5)) {
+                    cardData.displayData?.removeFirst()
                 }
-                .onEnded { (value) in
-                    withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
-                        switch value.translation.width {
-                        case 0...100:
-                            card.x = 0; card.degree = 0; card.y = 0
-                        case let x where x > 100:
-                            card.x = 500; card.degree = 12
-                        case (-100)...(-1):
-                            card.x = 0; card.degree = 0; card.y = 0
-                        case let x where x < -100:
-                            card.x  = -500; card.degree = -12
-                        default:
-                            card.x = 0; card.y = 0
-                        }
-                    }
-                }
-        )
+            }
+        }
+    }
+    
+    
+    func getRotation(degree: Double) -> Double {
+        let rotation = (offsetX / (getRect().width - 50)) * degree
+        
+        return rotation
+    }
+    
+    func leftSwipe() {
+        //MARK: LÀM ĐIỀU GÌ ĐÓ Ở BACKEND -> Ở ĐÂY TUI CHỈ CHO PRINT ĐẠI DÒNG NÀY TH NHA
+        print("QUET TRAI")
+    }
+    
+    func rightSwipe() {
+        //MARK: LÀM ĐIỀU GÌ ĐÓ Ở BACKEND -> Ở ĐÂY TUI CHỈ CHO PRINT ĐẠI DÒNG NÀY TH NHA
+        print("QUET PHAI")
     }
 }
 
@@ -98,7 +178,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card.data[0])
-            .previewLayout(.sizeThatFits)
+        CardView(card: Card(name: "Gin", imageName: "gin", age: 23, state: "Mexico"))
     }
 }

@@ -228,6 +228,8 @@ struct TopLikeView: View {
                 }
                 Spacer()
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

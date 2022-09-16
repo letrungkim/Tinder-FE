@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import NavigationStack
 
 struct MainView: View {
     @State var selectedTab: Int = 0

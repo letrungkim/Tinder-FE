@@ -15,12 +15,12 @@ struct WelcomeToTinderView: View {
             ZStack {
                 PushView(destination: InputNameView(), isActive: $goToNextView, label: {Text("")})
                 VStack {
-                    Spacer().frame(height: 70)
                     Group {
                         Image("TinderLabelColorful")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 120, height: 40)
+                            .padding(.top, 40)
                         Text("Chào mừng bạn đến với Match.")
                             .font(.system(size: 25, weight: .bold, design: .default))
                             .padding(.bottom, 5)
@@ -101,6 +101,8 @@ struct WelcomeToTinderView: View {
                             .padding(.horizontal, 45)
                     }
                 }
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
             }
         }
     }

@@ -11,12 +11,11 @@ import NavigationStack
 struct AddImageView: View {
     @StateObject var signUpVMGroup = SignUpViewModelGroup()
     @State private var disableButton: Bool = true
-    @State private var goToNextView: Bool = false
+    @Binding var liveInView: Bool
     @State private var goBack: Bool = false
     var body: some View {
         ZStack {
             PopView(isActive: $goBack, label: {Text("")})
-            PushView(destination: MainView(), isActive: $goToNextView, label: {Text("")})
             VStack {
                 Spacer().frame(height: 50)
                 Text("Thêm ảnh")
@@ -202,7 +201,7 @@ struct AddImageView: View {
                 }
                 Spacer()
                 Button {
-                    self.goToNextView = true
+                    liveInView = false
                 } label: {
                     if signUpVMGroup.countAddedImage >= 2 {
                         Text("TIẾP TỤC")
@@ -235,6 +234,8 @@ struct AddImageView: View {
                 .modifier(BackButtonModifier()),
                 alignment: .topLeading
             )
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
             .padding(20)
         }
     }
@@ -251,8 +252,42 @@ struct AddImageView: View {
     }
 }
 
+struct teleToLoadingView: View {
+    @State var isActive: Bool = true
+    
+    var body: some View {
+        ZStack {
+            if isActive {
+                AddImageView(liveInView: $isActive)
+            } else {
+                teleToMainView()
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+    }
+}
+
+struct teleToMainView: View {
+    @State var isActive: Bool = true
+    
+    var body: some View {
+        ZStack {
+            if isActive {
+                LoadingView(isActive: $isActive)
+            } else {
+                MainView()
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+    }
+}
+
+
+
 struct AddImageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddImageView()
+        AddImageView(liveInView: .constant(true))
     }
 }
