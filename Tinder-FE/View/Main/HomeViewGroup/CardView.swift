@@ -50,8 +50,8 @@ struct CardView: View {
                         
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.bottom, 100)
-                    .padding(.trailing, 150)
+                    .offset(x: -60, y: -100)
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundColor(.white)

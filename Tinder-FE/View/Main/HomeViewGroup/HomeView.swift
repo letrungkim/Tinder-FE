@@ -38,13 +38,7 @@ struct HomeView: View {
                     }
                 }
                 
-                HStack(spacing: 15) {
-                    Button(action: {}) {
-                        Image("resetButton")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                    }
+                HStack(spacing: 25) {
                     Button(action: {
                         doSwipe()
                     }) {
@@ -52,12 +46,6 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 65, height: 65)
-                    }
-                    Button(action: {}) {
-                        Image("supperLikeButton")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
                     }
                     Button(action: {
                         doSwipe(rightSwipe: true)
@@ -67,14 +55,9 @@ struct HomeView: View {
                             .scaledToFit()
                             .frame(width: 65, height: 65)
                     }
-                    Button(action: {}) {
-                        Image("boostButton")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                    }
                 }
-                .padding(.top, 570)
+                .offset(y: 280)
+                .padding(.vertical)
                 .disabled(homeVM.displayData?.isEmpty ?? false)
                 .opacity(homeVM.displayData?.isEmpty ?? false ? 0.5 : 1)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
